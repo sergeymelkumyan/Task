@@ -13,8 +13,6 @@ export class SummaryComponent implements OnInit {
 
   sum!: number;
   types: any;
-  id!: number;
-  subscription!: Subscription;
   dataSource: any;
 
   constructor(private router: Router,
@@ -26,7 +24,7 @@ export class SummaryComponent implements OnInit {
       return tot + arr.count;
     }, 0);
     this.types = this.shared.types;
-    this.subscription = this.shared.getRowData().subscribe((data: any) => {
+    this.shared.getRowData().subscribe((data: any) => {
       this.dataSource = data[1];
     });
   }

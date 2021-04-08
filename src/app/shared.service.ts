@@ -1337,7 +1337,6 @@ export class SharedService {
 
   constructor(private router: Router) { }
 
-  // sta id a yor onum komponentic stanum tvyalnen sarqum zangvac
   listDataFunc(id: any): any {
     this.types.map(singleType => {
       if (id === singleType.id){
@@ -1351,15 +1350,9 @@ export class SharedService {
       this.dataSource = this.ELEMENT_DATA;
       this.router.navigate(['navigator']);
       }
-    const arr = [id, this.dataSource];
-    this.subject.next(arr);
+    this.subject.next(this.dataSource);
   }
   getRowData(): any {
     return this.subject.asObservable();
   }
-
-  allTransactions(): any {
-    this.router.navigate(['navigator']);
-  }
-
 }
