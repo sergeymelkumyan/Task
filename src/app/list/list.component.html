@@ -1,0 +1,27 @@
+<div class="cardArea">
+    <ul class="nav nav-tabs" fxLayout="row">
+        <button 
+            class="btn btn-light"
+            *ngFor="let type of types" 
+            (click)="fetchRowData(type.id)" 
+            type="button"> 
+                {{type.name}}
+        </button>
+    </ul>
+    <div class="listArea">
+        <div  class="nameArea" fxLayout="row">
+            <div fxFlex="50" fxLayoutAlign="center center">Name</div>
+            <div fxFlex="50" fxLayoutAlign="center center">Account</div>
+            <hr>
+        </div>
+        <ul *ngFor="let data of dataSource">
+            <div class="listView">
+                <div fxLayoutAlign="space-between center" fxLayout="row">
+                    <div fxFlex="50" fxLayoutAlign="center center">{{data.name.first}} {{ data.name.last }} {{ data.type }}</div>
+                    <div fxFlex="50" fxLayoutAlign="center center">{{data.amount}} </div>
+                </div>
+            </div>
+            <hr>
+        </ul>
+    </div>
+</div>
