@@ -13,7 +13,6 @@ export class ListComponent implements OnInit {
 
   dataSource: any;
   types: any;
-  subscription!: Subscription;
   tab!: number;
 
   constructor(private shared: SharedService,
