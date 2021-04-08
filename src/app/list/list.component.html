@@ -1,12 +1,13 @@
 <div class="cardArea">
     <ul class="nav nav-tabs" fxLayout="row">
-        <button 
-            class="btn btn-light"
-            *ngFor="let type of types" 
-            (click)="fetchRowData(type.id)" 
-            type="button"> 
-                {{type.name}}
-        </button>
+        <div *ngFor="let type of types">
+            <button 
+                (click)="fetchRowData(type.id)" 
+                [ngClass]="{'btn btn-light active': type.id==tab, 'btn btn-light': type.id!=tab}"
+                type="button"> 
+                    {{type.name}}
+            </button>
+        </div>
     </ul>
     <div class="listArea">
         <div  class="nameArea" fxLayout="row">

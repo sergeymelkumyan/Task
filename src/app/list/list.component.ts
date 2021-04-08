@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { SharedService } from '../shared.service';
@@ -17,9 +17,11 @@ export class ListComponent implements OnInit {
   filteredValue: any;
   types: any;
   subscription!: Subscription;
+  tab!: number;
 
   constructor(private shared: SharedService,
-              private router: Router) {}
+              private router: Router,
+              private route: ActivatedRoute) {}
 
   fetchRowData(val: any): any {
     // this.rowValue = val;
@@ -36,12 +38,18 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      this.shared.getRowData().subscribe((arr: any) => {
-        if (arr) {
-          this.dataSource = arr[1];
-          this.rowValue = arr[0];
-        }
-      });
-      this.types = this.shared.types;
+    // tslint:disable-next-line: deprecation
+    this.route.queryParams.subscribe(
+      params => {
+        this.tab =  params.tab;
+      }
+    );
+    this.shared.getRowData().subscribe((arr: any) => {
+      if (arr) {
+        this.dataSource = arr[1];
+        this.rowValue = arr[0];
+      }
+    });
+    this.types = this.shared.types;
   }
 }
